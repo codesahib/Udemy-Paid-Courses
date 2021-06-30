@@ -1,0 +1,1 @@
+Any new website needs to be added in main function in the same order as in constants.total_sites

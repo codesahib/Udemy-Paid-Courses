@@ -1,0 +1,107 @@
+
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+<style>
+
+
+.courseContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.course{
+    display: flex;
+    width: fit-content;
+    margin:  10px 10px;
+    box-shadow: 0px 0px 5px 2px gray;
+    background-color: #e0e0e0;
+}
+
+.imageContainer, .detailContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.imageContainer {
+    border-right:  1px solid gray;
+}
+
+.courseButton {
+    width: fit-content;
+    align-self: center;
+    background-color: #344765;
+    color: white;
+    border-radius: 10px;
+    min-height: 30px;
+    min-width: 100px;
+    animation: glowing 1300ms infinite;
+}
+
+.courseButton:hover{
+    cursor: pointer;
+}
+
+.courseHeading {
+    color: #333333;
+    font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.courseAbout {
+    justify-content: center;
+}
+
+@keyframes glowing {
+        0% {
+          background-color: #2ba805;
+          box-shadow: 0 0 5px #2ba805;
+        }
+        50% {
+          background-color: #49e819;
+          box-shadow: 0 0 20px #49e819;
+        }
+        100% {
+          background-color: #344765;
+          box-shadow: 0 0 5px #2ba805;
+        }
+      }
+
+</style>
+</head>
+<body>
+    <div class="courseContainer">
+        <div class="course" style="">
+           <!--  <div class="imageContainer">
+                <img border="0"  src="https://s3.amazonaws.com/yofreesamples/deals/%0AEasy+Python+for+Absolute+Beginners%0A.jpg" width="180" height="100" />
+            </div> -->
+            
+            <div class="detailContainer">
+                <span class="courseHeading">Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2021</span><br />
+                <p class="courseAbout"><b>About Course:</b> Learn HTML5, CSS3, JavaScript, jQuery and Bootstrap framework by building a modern looking responsive website.</p>
+                <button class="courseButton" onclick="window.open('https://www.udemy.com/course/build-responsive-website-using-html5-css3-js-and-bootstrap-p/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-aqxgqDV6CwjDraFr1LBDBw&utm_source=aff-campaign&LSNPUBID=nN98ER4vNAU&utm_medium=udemyads&couponCode=4D07D2277F23DC426AC0')">Get Course</a></button>
+            </div>
+
+        </div>
+    
+        <div class="course" style="">
+            <div class="imageContainer">
+            <!--     <img border="0"  src="https://s3.amazonaws.com/yofreesamples/deals/%0AEasy+Python+for+Absolute+Beginners%0A.jpg" width="180" height="100" />
+            </div> -->
+            
+            <div class="detailContainer">
+                <span class="courseHeading">Becoming A Recruitment And Selection Specialist</span><br />
+                <p class="courseAbout"><b>About Course:</b> It is necessary to have a good recruitment process to attract the right kind of staff for the needs of your business.</p>
+                <button class="courseButton" onclick="window.open('https://www.udemy.com/course/first-steps-into-recruitment-and-selection/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-XJrnTq21VYUHEHv1kj9ZOw&LSNPUBID=nN98ER4vNAU&utm_source=aff-campaign&utm_medium=udemyads&couponCode=JUNE.2021')">Get Course</a></button>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>
