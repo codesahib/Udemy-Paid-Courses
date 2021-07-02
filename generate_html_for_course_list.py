@@ -1,3 +1,8 @@
+from datetime import date
+
+today = date.today()
+date_today = today.strftime("%d/%m/%Y")
+
 course_list=[\
 "Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2021||https://www.udemy.com/course/build-responsive-website-using-html5-css3-js-and-bootstrap-p/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-aqxgqDV6CwjDraFr1LBDBw&utm_source=aff-campaign&LSNPUBID=nN98ER4vNAU&utm_medium=udemyads&couponCode=4D07D2277F23DC426AC0",\
 "Becoming A Recruitment And Selection Specialist||https://www.udemy.com/course/first-steps-into-recruitment-and-selection/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-XJrnTq21VYUHEHv1kj9ZOw&LSNPUBID=nN98ER4vNAU&utm_source=aff-campaign&utm_medium=udemyads&couponCode=JUNE.2021"]
@@ -84,13 +89,17 @@ html = """
 </style>
 </head>
 <body>
-    <h1>Free course list</h1>
+    <h1> Udemy free course list for """
+    
+html += date_today
+
+html += """</h1>
     <p>Presenting Udemy free courses. The courses come with a certification which can be added to resume/LinkedIn to get a boost in career.</p>
     <div class="courseContainer">
 """
 
 course_list_html = []
-html_template_for_course = "\n"+space_8+"<div class='course'>\n"+space_12+"<div class='detailContainer'>\n"+space_16+"<span class='courseHeading'>__heading__</span><br /><button class='courseButton' onclick='window.open('__url__')'>Get Course</a></button>\n"+space_12+"</div>\n"+space_8+"</div>"
+html_template_for_course = "\n"+space_8+"<div class='course'>\n"+space_12+"<div class='detailContainer'>\n"+space_16+"<span class='courseHeading'>__heading__</span><br /><button class='courseButton' onclick='window.open(\"__url__\")'>Get Course</a></button>\n"+space_12+"</div>\n"+space_8+"</div>"
 
 for course in course_list:
     c = course.split('||')
@@ -116,4 +125,8 @@ html += """
 """
 
 
-print(html)
+# print(html)
+
+f = open('output.html','w')
+f.write(html)
+f.close()

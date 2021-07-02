@@ -2,6 +2,7 @@ t.py
 r.py
 cookie.txt
 launch.json
+output.html
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

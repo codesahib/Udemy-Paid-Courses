@@ -74,8 +74,10 @@ def main():
         type=int,\
         help="Number of results to get from each site.")
     # *******************
-    global results
+    global results, results_list
     results = {}
+    results_list = []
+
     try:
         args = parser.parse_args()
         
@@ -143,7 +145,12 @@ def main():
                 d += 1
             s += 1
 
-        print(results)
+        # print(results)
+        for key in results:
+            ele = key + "||" + results[key]
+            results_list.append(ele)
+
+        print(results_list)
         print("Total Results = " + str(len(results)))
     except Exception as e :
         print(e)
