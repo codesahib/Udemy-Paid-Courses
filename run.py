@@ -1,4 +1,3 @@
-import browser_cookie3
 import urllib3
 import requests
 import re
@@ -47,7 +46,8 @@ def process(list_st, dd, limit, site_index):
     print('\n')
     for index, stru in enumerate(list_st, start=1):
         sp1 = stru.split('||')
-        print(fc + sd + '[' + fm + sb + '*' + fc + sd + '] ' + fr + str(index), fy + sp1[0])
+        # print(fc + sd + '[' + fm + sb + '*' + fc + sd + '] ' + fr + str(index), fy + sp1[0])
+        print(stru)
     print('\n' + fc + sd + '----' + fm + sb + '>>' + fb + ' To load more input "m" OR to subscribe any course from above input "y": ', end='')
     input_2 = input()
     if input_2 == 'm':
@@ -97,7 +97,7 @@ def main():
         
         try:
             if args.cron:
-                input_1 = 'y'
+                input_1 = 'n'
             else:
                 print('\n' + fc + sd + '----' + fm + sb + '>>' + fb + ' Want to see available coupons (INPUT "n") OR subscribe to all available courses automatically (input "y"): ', end='')
                 input_1 = input()
@@ -117,21 +117,21 @@ def main():
                         site = process(list_st, d, limit, site_index)
                         d += 1
                 if site == 'Discudemy':
-                    limit = 4
+                    limit = 1
                     print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Discudemy ' + fm + sb + '<<' + fc + sd + '-------\n')
                     while d <= limit:
                         list_st = discudemy(d)
                         site = process(list_st, d, limit, site_index)
                         d += 1
                 if site == 'Udemy Freebies':
-                    limit = 4
+                    limit = 1
                     print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Udemy Freebies ' + fm + sb + '<<' + fc + sd + '-------\n')
                     while d <= limit:
                         list_st = udemy_freebies(d)
                         site = process(list_st, d, limit, site_index)
                         d += 1
                 if site == 'Udemy Coupons':
-                    limit = 4
+                    limit = 1
                     print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Udemy Coupons ' + fm + sb + '<<' + fc + sd + '-------\n')
                     while d <= limit:
                         list_st = udemy_coupons_me(d)

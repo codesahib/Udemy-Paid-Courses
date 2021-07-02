@@ -1,3 +1,14 @@
+course_list=[\
+"Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2021||https://www.udemy.com/course/build-responsive-website-using-html5-css3-js-and-bootstrap-p/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-aqxgqDV6CwjDraFr1LBDBw&utm_source=aff-campaign&LSNPUBID=nN98ER4vNAU&utm_medium=udemyads&couponCode=4D07D2277F23DC426AC0",\
+"Becoming A Recruitment And Selection Specialist||https://www.udemy.com/course/first-steps-into-recruitment-and-selection/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-XJrnTq21VYUHEHv1kj9ZOw&LSNPUBID=nN98ER4vNAU&utm_source=aff-campaign&utm_medium=udemyads&couponCode=JUNE.2021"]
+
+
+space_4="    "
+space_8 = space_4+space_4
+space_12 = space_8+space_4
+space_16 = space_8+space_8
+
+html = """
 <html>
 <head>
 <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
@@ -76,23 +87,33 @@
     <h1>Free course list</h1>
     <p>Presenting Udemy free courses. The courses come with a certification which can be added to resume/LinkedIn to get a boost in career.</p>
     <div class="courseContainer">
-        <div class="course">
-            <div class="detailContainer">
-                <span class="courseHeading">Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2021</span><br />
-               
-                <button class="courseButton" onclick="window.open('https://www.udemy.com/course/build-responsive-website-using-html5-css3-js-and-bootstrap-p/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-aqxgqDV6CwjDraFr1LBDBw&utm_source=aff-campaign&LSNPUBID=nN98ER4vNAU&utm_medium=udemyads&couponCode=4D07D2277F23DC426AC0')">Get Course</a></button>
-            </div>
-        </div>
-    
-        <div class="course">
-            <div class="detailContainer">
-                <span class="courseHeading">Becoming A Recruitment And Selection Specialist</span><br />
+"""
 
-                <button class="courseButton" onclick="window.open('https://www.udemy.com/course/first-steps-into-recruitment-and-selection/?ranMID=39197&ranEAID=nN98ER4vNAU&ranSiteID=nN98ER4vNAU-XJrnTq21VYUHEHv1kj9ZOw&LSNPUBID=nN98ER4vNAU&utm_source=aff-campaign&utm_medium=udemyads&couponCode=JUNE.2021')">Get Course</a></button>
-            </div>
-        </div>
+course_list_html = []
+html_template_for_course = "\n"+space_8+"<div class='course'>\n"+space_12+"<div class='detailContainer'>\n"+space_16+"<span class='courseHeading'>__heading__</span><br /><button class='courseButton' onclick='window.open('__url__')'>Get Course</a></button>\n"+space_12+"</div>\n"+space_8+"</div>"
+
+for course in course_list:
+    c = course.split('||')
+    heading = c[0]
+    url = c[1]
+
+    html_template_for_course = html_template_for_course.replace("__heading__",heading)
+    html_template_for_course = html_template_for_course.replace("__url__",url)
+
+    course_list_html.append(html_template_for_course)
+    
+    html_template_for_course = html_template_for_course.replace(heading,'__heading__')
+    html_template_for_course = html_template_for_course.replace(url,'__url__')
+
+html += '\n'.join(course_list_html)
+
+html += """
     </div>
     
     <h3>Bookmark this page to get latest updates daily</h3>
 </body>
 </html>
+"""
+
+
+print(html)
