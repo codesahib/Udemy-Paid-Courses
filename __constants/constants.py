@@ -17,7 +17,6 @@ FREE_ENROLL1 = 'https://www.udemy.com/api-2.0/users/me/subscribed-courses/?field
 
 total_sites = [
     'Discudemy',
-    'Learn Viral',
     'Udemy Freebies',
     'Udemy Coupons',
     'Real Discount',
