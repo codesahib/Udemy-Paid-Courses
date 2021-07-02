@@ -74,7 +74,6 @@ def main():
         type=int,\
         help="Number of results to get from each site.")
     # *******************
-
     global results
     results = {}
     try:
