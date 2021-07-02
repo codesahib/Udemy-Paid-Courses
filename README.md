@@ -1,5 +1,5 @@
-# Udemy-Paid-Courses-Grabber
-Script to add all udemy paid/free courses having coupons automatically to your udemy account
+# Udemy-Paid-Courses-Grabber (Web Scrapper)
+Script to grab **Udemy** paid courses having coupons automatically from different websites
 
 ## ***Requirements***
 
@@ -8,53 +8,31 @@ Script to add all udemy paid/free courses having coupons automatically to your u
 - Python module `requests`
 - Python module `colorama`
 - Python module `bs4`
-- Python module `browser_cookie3`
 
 ## ***Module Installation***
 
-	pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ## ***Features***
 
-- Automatic login through browser using `browser_cookie3`
-- One click to add all courses available with coupons to your udemy account.
-- You can add any specific course to your account from the list of courses available.
+- Fetch courses from various sites and from within pages on each site
 - Many popular sites added to grab fresh/new courses (coupons).
-- Many more features
+- Generate html page from fetched courses
 
 ## ***Usage***
 
-***Add all/specific course***
+1. `python run.py`
 
-    python udemy.py
+##### This will by default grab courses from 1 page across 2 sites
 
-***Or with cookie***
+2. `python --help`
 
-    python udemy.py -c cookie.txt
+##### Open help
 
-***To schedule with cron jobs***
+3. `python --sites SITES --pages PAGES`
+E.g.
+`python --sites 2 --pages 3`
 
-    python udemy.py --cron
-
-***To subscribe only paid courses***
-
-    python udemy.py --paid
-
-***Guide to create cookie.txt file***
-- Firstly go to udemy.com, then follow the images guide below
-<img src='images/image1.jpg' width='600' height='400'>
+##### This will grab courses from 3 page across 2 sites.
 
 
-<img src='images/image2.jpg' width='600' height='400'>
-
-
-<img src='images/image3.jpg' width='600' height='400'>
-
-
-<img src='images/image4.jpg' width='600' height='400'>
-
-
-<img src='images/image5.jpg' width='600' height='400'>
-
-
-<img src='images/image6.jpg' width='600' height='400'>
