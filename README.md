@@ -1,5 +1,7 @@
-# Udemy-Paid-Courses-Grabber (Web Scrapper)
-Script to grab **Udemy** paid courses having coupons automatically from different websites
+# WebScrapper-Udemy-Paid-Courses
+(Refurbished and optimized code with advance features)
+
+**Script to grab ***Udemy*** paid courses having coupons automatically from different websites**
 
 ## ***Requirements***
 
