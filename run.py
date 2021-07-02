@@ -101,7 +101,7 @@ def main():
             if args.sites:
                 sites = args.sites
             else:
-                sites = 3
+                sites = 2
         except:
             pass
         
