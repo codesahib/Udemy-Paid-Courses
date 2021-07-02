@@ -127,6 +127,6 @@ html += """
 
 # print(html)
 
-f = open('output.html','w')
+f = open('output.html','w',encoding='utf-8')
 f.write(html)
 f.close()

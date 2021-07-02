@@ -3,6 +3,7 @@ r.py
 cookie.txt
 launch.json
 output.html
+courses.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

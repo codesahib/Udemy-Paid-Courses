@@ -151,6 +151,9 @@ def main():
             results_list.append(ele)
 
         print(results_list)
+        f = open('courses.txt','w',encoding='utf-8')
+        f.write(str(results_list))
+        f.close()
         print("Total Results = " + str(len(results)))
     except Exception as e :
         print(e)
