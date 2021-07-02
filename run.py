@@ -46,15 +46,16 @@ def process(list_st, dd, limit, site_index):
     for index, stru in enumerate(list_st, start=1):
         sp1 = stru.split('||')
         # print(fc + sd + '[' + fm + sb + '*' + fc + sd + '] ' + fr + str(index), fy + sp1[0])
-        print(stru)
-    print('\n' + fc + sd + '----' + fm + sb + '>>' + fb + ' To load more input "m" OR to subscribe any course from above input "y": ', end='')
-    input_2 = input()
-    if input_2 == 'm':
-        if dd != limit-1:
-            return total_sites[site_index + 1]
-    else:
-        exit()
-
+        # print(stru)
+        results[sp1[0]] = sp1[1]
+    
+    # print('\n' + fc + sd + '----' + fm + sb + '>>' + fb + ' To load more input "m" OR to subscribe any course from above input "y": ', end='')
+    # input_2 = input()
+    # if input_2 == 'm':
+    #     if dd != limit-1:
+    #         return total_sites[site_index + 1]
+    # else:
+    #     exit()
 
 def main():
     # ***** Argument Generator *****
@@ -72,15 +73,10 @@ def main():
         '-s', '--sites',\
         type=int,\
         help="Number of results to get from each site.")
-
-    authentication = parser.add_argument_group("Features")
-    authentication.add_argument(
-        '-c', '--cron',\
-        dest='cron',\
-        action='store_true',\
-        help="Added support to create a cron job/task")
     # *******************
-
+    
+    global results
+    results = {}
     try:
         args = parser.parse_args()
         
@@ -91,14 +87,6 @@ def main():
         colors = [codes[color] for color in codes if color not in bad_colors]
         # for site in total_sites:
         #     print(random.choice(colors) + site)
-        
-        try:
-            if args.cron:
-                input_1 = 'n'
-            else:
-                input_1 = 'n'
-        except:
-            pass
         
         try:
             if args.pages:
@@ -119,135 +107,45 @@ def main():
         print("Number of sites = " + str(sites))
         print("Number of pages to traverse from each site = " + str(limit))
 
-        if input_1 == 'n':
-            global d # This indicates the page number on a website
-            global s # This indicates sites visited
-            s = 1
-            for site_index, site in enumerate(total_sites):
+        global d # This indicates the page number on a website
+        global s # This indicates sites visited
+        s = 1
+        for site_index, site in enumerate(total_sites):
+            if s > sites:
+                print("No of sites exceeded. Limit = " + str(sites))
+                break
+
+            print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb + ' ' + site + ' ' + fm + sb + '<<' + fc + sd + '-------\n')
+            d = 1 # Each new site should start with first page
+            while d <= limit:
                 if site == 'Discudemy':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Discudemy ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = discudemy(d)
-                        print(list_st)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = discudemy(d)
                 if site == 'Udemy Freebies':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Udemy Freebies ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = udemy_freebies(d)
-                        print(list_st)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = udemy_freebies(d)
                 if site == 'Udemy Coupons':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Udemy Coupons ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = udemy_coupons_me(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = udemy_coupons_me(d)
                 if site == 'Real Discount':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Real Discount ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = real_disc(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = real_disc(d)
                 if site == 'Tricks Info':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Tricks Info ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = tricksinfo(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = tricksinfo(d)
                 if site == 'Free Web Cart':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Free Web Cart ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = freewebcart(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = freewebcart(d)
                 if site == 'Course Mania':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Course Mania ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = course_mania(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = course_mania(d)
                 if site == 'Help Covid':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Help Covid ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = helpcovid(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = helpcovid(d)
                 if site == 'Jojo Coupons':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Jojo Coupons ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = jojocoupons(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = jojocoupons(d)
                 if site == 'Learn Viral':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Learn Viral ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = learnviral(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
+                    list_st = learnviral(d)
                 if site == 'Online Tutorials':
-                    if s > sites:
-                        break
-                    print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb +' Online Tutorials ' + fm + sb + '<<' + fc + sd + '-------\n')
-                    d = 1
-                    while d <= limit:
-                        list_st = onlinetutorials(d)
-                        # site = process(list_st, d, limit, site_index)
-                        site = total_sites[site_index+1]
-                        d += 1
-                    s += 1
-        
+                    list_st = onlinetutorials(d)
+                process(list_st, d, limit, site_index) # Just to print result or store in results dict.
+                d += 1
+            s += 1
+
+        print(results)
+        print("Total Results = " + str(len(results)))
     except Exception as e :
         print(e)
         exit('\nunknown error')

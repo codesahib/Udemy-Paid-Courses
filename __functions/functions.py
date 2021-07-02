@@ -50,7 +50,7 @@ def real_disc(page):
     # print(len(content))
     # exit()
     for index, i in enumerate(content):
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         # print(udd[index].text)
         if udd[index].text.replace('\n', '') == 'Udemy':
@@ -75,7 +75,7 @@ def udemy_freebies(page):
     for index, items in enumerate(all):
         title = items.img['title']
         url2 = items.a['href']
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
 
         r2 = requests.get(url2, headers=head, verify=False)
@@ -100,7 +100,7 @@ def udemy_coupons_me(page):
     for index, items in enumerate(all):
         title = items.a['title']
         url2 = items.a['href']
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         r2 = requests.get(url2, headers=head, verify=False)
         soup1 = BeautifulSoup(r2.content, 'html.parser')
@@ -134,7 +134,7 @@ def discudemy(page):
             next = soup1.find('div', 'ui center aligned basic segment')
             url3 = next.a['href']
             r3 = requests.get(url3, headers=head, verify=False)
-            sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+            sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
             sys.stdout.flush()
             soup3 = BeautifulSoup(r3.content, 'html.parser')
             links_ls.append(title + '||' + soup3.find('div', 'ui segment').a['href'])
@@ -155,7 +155,7 @@ def tricksinfo(page):
         title = items['aria-label']
         url2 = items['href']
         r2 = requests.get(url2, headers=head, verify=False)
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         soup1 = BeautifulSoup(r2.content, 'html.parser')
         link = soup1.find('div', 'wp-block-button').a['href']
@@ -176,7 +176,7 @@ def freewebcart(page):
         title = items.text
         url2 = items.a['href']
         r2 = requests.get(url2, headers=head, verify=False)
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         soup1 = BeautifulSoup(r2.content, 'html.parser')
         link = soup1.find('a', class_ = 'btn btn-default btn-lg')['href']
@@ -229,7 +229,7 @@ def jojocoupons(page):
         title = items.text
         url2 = items.a['href']
         r2 = requests.get(url2, headers=head, verify=False)
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         soup1 = BeautifulSoup(r2.content, 'html.parser')
         link = soup1.find('div', class_ = 'rh-post-wrapper')
@@ -257,7 +257,7 @@ def onlinetutorials(page):
         title = items.text
         url2 = items.a['href']
         r2 = requests.get(url2, headers=head, verify=False)
-        sys.stdout.write("\rLOADING URLS: " + animation[index % len(animation)])
+        sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         soup1 = BeautifulSoup(r2.content, 'html.parser')
         link = soup1.find('div', class_ = 'link-holder').a['href']
