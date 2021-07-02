@@ -58,50 +58,43 @@ def process(list_st, dd, limit, site_index):
 
 
 def main():
+    # ***** Argument Generator *****
     parser = argparse.ArgumentParser(description='', conflict_handler="resolve")
     general = parser.add_argument_group("General")
     general.add_argument(
         '-h', '--help',\
         action='help',\
         help="Shows the help.")
-    authentication = parser.add_argument_group("Authentication")
-    
+    general.add_argument(
+        '-n', '--num',\
+        dest='num_results',\
+        action='count',\
+        help="Number of results to get from each site.")
+
+    authentication = parser.add_argument_group("Features")
     authentication.add_argument(
         '-k', '--cron',\
         dest='cron',\
         action='store_true',\
         help="Added support to create a cron job/task")
+    # *******************
 
-    authentication.add_argument(
-        '-p', '--paid',\
-        dest='paid',\
-        action='store_true',\
-        help="Enroll to only paid courses")
-    
     try:
         args = parser.parse_args()
-        ip = ".".join(map(str, (random.randint(0, 255) for _ in range(4)))) # Any random ip address
-        global paid_only
-        if args.paid:
-            paid_only = True
-        else:
-            paid_only = False
         
         time.sleep(0.8)
-        print(fc + sd + '[' + fm + sb + '*' + fc + sd + '] ' + fw + 'Websites Available: ')
+        # print(fc + sd + '[' + fm + sb + '*' + fc + sd + '] ' + fw + 'Websites Available: ')
         bad_colors = ['BLACK', 'WHITE', 'LIGHTBLACK_EX', 'RESET']
         codes = vars(colorama.Fore)
         colors = [codes[color] for color in codes if color not in bad_colors]
-        for site in total_sites:
-            print(random.choice(colors) + site)
+        # for site in total_sites:
+        #     print(random.choice(colors) + site)
         
         try:
             if args.cron:
                 input_1 = 'n'
             else:
-                print('\n' + fc + sd + '----' + fm + sb + '>>' + fb + ' Want to see available coupons (INPUT "n") OR subscribe to all available courses automatically (input "y"): ', end='')
-                input_1 = input()
-                more = ''
+                input_1 = 'n'
         except:
             pass
 
