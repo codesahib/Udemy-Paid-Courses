@@ -18,6 +18,21 @@ html = """
 <head>
 <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
 <style>
+    body{
+        background-color: #FAF9F6;
+    }
+
+    #intro{
+        background-color: #E8F5FA;
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        border-radius: .625rem;
+        font-size: 1.25rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        padding: .625rem
+    }
+
     .courseContainer {
         display: flex;
         flex-direction: column;
@@ -27,21 +42,10 @@ html = """
     .course{
         display: flex;
         width: 70%;
-        margin:  10px 10px;
-        box-shadow: 0px 0px 5px 2px gray;
-        background-color: #FAF9F6;
+        margin:  .625rem .625rem;
+        box-shadow: 0 0 .3125rem .125rem gray;
+        background-color: #f8f5ea;
         justify-content: center;
-    }
-
-    .imageContainer, .detailContainer{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 10px 20px;
-    }
-
-    .imageContainer {
-        border-right:  1px solid gray;
     }
 
     .courseButton {
@@ -49,9 +53,9 @@ html = """
         align-self: center;
         background-color: #344765;
         color: white;
-        border-radius: 10px;
-        min-height: 30px;
-        min-width: 100px;
+        border-radius: .625rem;
+        min-height: 1.875rem;
+        min-width: 6.25rem;
         animation: glowing 1300ms infinite;
     }
 
@@ -62,7 +66,7 @@ html = """
     .courseHeading {
         color: #333333;
         font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: bold;
         text-align: center;
     }
@@ -71,9 +75,24 @@ html = """
         justify-content: center;
     }
 
+    .imageContainer, .detailContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: .625rem 1.25rem;
+    }
+
+    .imageContainer {
+        border-right:  .0625rem solid gray;
+    }
+
     h3 {
-        margin-top: 100px;
         text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    h1 {
+        margin: 1.875rem
     }
 
     @keyframes glowing {
@@ -89,12 +108,19 @@ html = """
 </style>
 </head>
 <body>
-    <h1> Udemy free course list for """
+    <center>
+        <div id="intro">
+            <p>Welcome to <a href="https://udemyfreecoursehere.blogspot.com/">udemyfreecoursehere.blogspot.com</a></p>
+            <p>Here you'll find premium certifaction courses for free. The courses come with a certification which can be added to resume/LinkedIn to get a boost in career.</p>
+            <h3>You'll always find updated Udemy course list here. So bookmark this page to get latest updates daily</h3>
+        </div>
+        <h1>Free course list for 
+     """
     
 html += date_today
 
 html += """</h1>
-    <p>Presenting Udemy free courses. The courses come with a certification which can be added to resume/LinkedIn to get a boost in career.</p>
+    </center>
     <div class="courseContainer">
 """
 
@@ -118,8 +144,6 @@ html += '\n'.join(course_list_html)
 
 html += """
     </div>
-    
-    <h3>Bookmark this page to get latest updates daily</h3>
 </body>
 </html>
 """
