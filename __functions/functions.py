@@ -94,18 +94,19 @@ def udemy_coupons_me(page):
 
     r = requests.get(UDEMYCOUPONS + str(page), headers=head, verify=False)
     soup = BeautifulSoup(r.content, 'html.parser')
-    all = soup.find_all('div', 'td_module_1 td_module_wrap td-animation-stack')
-    if page == 1:
-        all = all[2:]
+    all = soup.find_all('div', 'tdb_module_loop td_module_wrap td-animation-stack')
+    
     for index, items in enumerate(all):
-        title = items.a['title']
-        url2 = items.a['href']
+        a = items.find('a', 'td-image-wrap')
+        url2 = a['href']
+        title = a['title']
+        
         sys.stdout.write("\rLOADING URLS FROM PAGE: " + str(page) + " " + animation[index % len(animation)])
         sys.stdout.flush()
         r2 = requests.get(url2, headers=head, verify=False)
         soup1 = BeautifulSoup(r2.content, 'html.parser')
         try:
-            ll = soup1.find('span', class_ = 'td_text_highlight_marker_green td_text_highlight_marker').a['href']
+            ll = soup1.find('span', 'td_text_highlight_marker_green td_text_highlight_marker').a['href']
             links_ls.append(title + '||' + ll)
         except:
             ll = ''
@@ -265,3 +266,6 @@ def onlinetutorials(page):
     return links_ls
 
 # print(onlinetutorials(1))
+
+if __name__ == '__main__':
+    udemy_coupons_me(2)
