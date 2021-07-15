@@ -41,13 +41,15 @@ def get_course_coupon(url):
     except:
         return ''
 
-def process(list_st, dd, limit, site_index): # Only 'list_st' is used 
+def process(list_st, dd, limit, site_index): # Only 'list_st' is used
     print('\n')
     for index, stru in enumerate(list_st, start=1):
         sp1 = stru.split('||')
+        x = re.search(".*www\.udemy\.com.*couponCode=.*",sp1[1])
         # print(fc + sd + '[' + fm + sb + '*' + fc + sd + '] ' + fr + str(index), fy + sp1[0])
         # print(stru)
-        results[sp1[0]] = sp1[1]
+        if x:
+            results[sp1[0]] = sp1[1]
     
     # print('\n' + fc + sd + '----' + fm + sb + '>>' + fb + ' To load more input "m" OR to subscribe any course from above input "y": ', end='')
     # input_2 = input()
