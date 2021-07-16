@@ -112,7 +112,7 @@ html = """
         <div id="intro">
             <p>Welcome to <a href="https://udemyfreecoursehere.blogspot.com/">udemyfreecoursehere.blogspot.com</a></p>
             <p>Here you'll find premium certifaction courses for free. The courses come with a certification which can be added to resume/LinkedIn to get a boost in career.</p>
-            <h3>You'll always find updated Udemy course list here. So bookmark this page to get latest updates daily</h3>
+            <h3>You'll always find updated Udemy course list here. So bookmark <a href="https://udemyfreecoursehere.blogspot.com/">this</a> page to get latest updates daily</h3>
         </div>
         <h1>Free course list for 
      """
