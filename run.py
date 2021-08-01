@@ -6,6 +6,7 @@ import random
 import sys
 import argparse
 import colorama
+import json
 from bs4 import BeautifulSoup
 from pathlib import Path
 from __banner.banner import banner
@@ -120,10 +121,11 @@ def main():
         s = 1
         for site_index, site in enumerate(total_sites):
             if s > sites:
-                print("No of sites exceeded. Limit = " + str(sites))
+                if args.verbose is True:
+                    print("No of sites exceeded. Limit = " + str(sites))
                 break
-
-            print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb + ' ' + site + ' ' + fm + sb + '<<' + fc + sd + '-------\n')
+            if args.verbose is True:
+                print('\n' + fc + sd + '-------' + fm + sb + '>>' + fb + ' ' + site + ' ' + fm + sb + '<<' + fc + sd + '-------\n')
             d = 1 # Each new site should start with first page
             while d <= limit:
                 if site == 'Discudemy':
@@ -151,7 +153,9 @@ def main():
                 process(list_st, d, limit, site_index) # Just to print result or store in results dict.
                 d += 1
             s += 1
-
+        # results = {
+        #     "Wireshark: Packet Analysis and Ethical Hacking: Core Skills":"https://www.udemy.com/course/learn-aspnet-mvc-and-entity-framework/?couponCode=ASPNET_JUL_FREE_3"
+        # }
         # print(results)
         
         head = {
@@ -167,23 +171,23 @@ def main():
             soup = BeautifulSoup(r.content, 'html.parser')
             headline = soup.find('div', 'udlite-text-md clp-lead__headline').text
             headline = headline.replace('\n','')
-            creator = soup.find('a', 'udlite-instructor-links').span.text
-            creator = creator.replace('\n','')
+            creator = soup.find('div', 'instructor-links--instructor-links--3d8_F').span.text
+            creator = creator.replace('\n','').replace('Created by ','')
             rating = soup.find('span','udlite-heading-sm star-rating--rating-number--3lVe8').text
             
-            course_details['title'] = title
-            course_details['link'] = link
-            course_details['headline'] = headline
-            course_details['creator'] = creator
-            course_details['rating'] = rating
+            course_details["title"] = title
+            course_details["link"] = link
+            course_details["headline"] = headline
+            course_details["creator"] = creator
+            course_details["rating"] = rating
 
             json_for_export.append(course_details)
 
-        print(str(json_for_export))
-        # f = open('courses.txt','w',encoding='utf-8')
-        # f.write(str(results_list))
-        # f.close()
-        print("Total Results = " + str(len(json_for_export)))
+        f = open('courses.txt','w',encoding='utf-8')
+        f.write(json.dumps(json_for_export))
+        f.close()
+        if args.verbose is True:
+            print("Total Results = " + str(len(json_for_export)))
     except Exception as e :
         print(e)
         exit('\nunknown error')
