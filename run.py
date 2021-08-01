@@ -68,6 +68,10 @@ def main():
         action='help',\
         help="Shows the help.")
     general.add_argument(
+        '-v', '--verbose',\
+        action='store_true',\
+        help="Turn on debug messages")
+    general.add_argument(
         '-p', '--pages',\
         type=int,\
         help="Number of pages to traverse from each site.")
@@ -107,8 +111,9 @@ def main():
         except:
             pass
         
-        print("Number of sites = " + str(sites))
-        print("Number of pages to traverse from each site = " + str(limit))
+        if args.verbose is True:
+            print("Number of sites = " + str(sites))
+            print("Number of pages to traverse from each site = " + str(limit))
 
         global d # This indicates the page number on a website
         global s # This indicates sites visited
@@ -148,15 +153,37 @@ def main():
             s += 1
 
         # print(results)
-        for key in results:
-            ele = key + "||" + results[key]
-            results_list.append(ele)
+        
+        head = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+        }
+        json_for_export = []
+        for title in results:
+            course_details = {}
+            link = results[title]
+            # Scrap the link for details, rating and creator
+            r = requests.get(link, headers=head, verify=False)
+            soup = BeautifulSoup(r.content, 'html.parser')
+            headline = soup.find('div', 'udlite-text-md clp-lead__headline').text
+            headline = headline.replace('\n','')
+            creator = soup.find('a', 'udlite-instructor-links').span.text
+            creator = creator.replace('\n','')
+            rating = soup.find('span','udlite-heading-sm star-rating--rating-number--3lVe8').text
+            
+            course_details['title'] = title
+            course_details['link'] = link
+            course_details['headline'] = headline
+            course_details['creator'] = creator
+            course_details['rating'] = rating
 
-        print(results_list)
-        f = open('courses.txt','w',encoding='utf-8')
-        f.write(str(results_list))
-        f.close()
-        print("Total Results = " + str(len(results)))
+            json_for_export.append(course_details)
+
+        print(str(json_for_export))
+        # f = open('courses.txt','w',encoding='utf-8')
+        # f.write(str(results_list))
+        # f.close()
+        print("Total Results = " + str(len(json_for_export)))
     except Exception as e :
         print(e)
         exit('\nunknown error')
